@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>T.HE C.K.S</title>
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <link rel='shortcut icon' href='http://www.thesum.ca/images/cloud.jpg' />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;900&display=swap');
+
+    * {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      outline: none;
+      border: none;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all .2s linear;
+    }
+
+    body,
+    html {
+      overflow-x: hidden;
+    }
+
+    #nav-toggler {
+      -webkit-appearance: none;
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      cursor: pointer;
+      z-index: 1010;
+      opacity: 0.8;
+      font-size: 3rem;
+    }
+
+    #nav-toggler:checked {
+      transform: rotate(180deg);
+    }
+
+    #nav-toggler:checked::before {
+      content: '\f00d';
+      color: rgb(0, 0, 0);
+      transition: .2s linear .2s;
+      opacity: 0.8;
+    }
+
+    #nav-toggler:checked~.navbar {
+      left: 0;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: -110%;
+      height: 100%;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-flow: column;
+      padding: 0 10%;
+    }
+
+    .navbar a {
+      font-size: 4em;
+      color: transparent;
+      -webkit-text-stroke: .5px rgba(255, 255, 255, 0.5);
+      font-weight: bolder;
+      position: relative;
+      letter-spacing: 3px;
+    }
+
+    .navbar a::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: rgba(0, 0, 0, 0.9);
+      transition: .3s linear;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    }
+
+    .navbar a:hover::before {
+      clip-path: polygon(0 0, 100% 0, 99% 100%, 0 100%);
+    }
+
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: url(https://mocah.org/mocahbig/424172-digital-painting-landscape-mountains-sky-sunset.jpg) no-repeat;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(90%);
+      z-index: -1;
+    }
+
+    .navbar a:hover:nth-child(2)~.background-image {
+      background: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b3be1dae-3caa-4d45-be6c-3de586ba95e2/dehcgvq-b83ad696-b79b-43ba-a868-461402a8c37a.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2IzYmUxZGFlLTNjYWEtNGQ0NS1iZTZjLTNkZTU4NmJhOTVlMlwvZGVoY2d2cS1iODNhZDY5Ni1iNzliLTQzYmEtYTg2OC00NjE0MDJhOGMzN2EuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.RSqFRYxrmhlL1g3Ba2WegdzVvTwjhf-vrb-bQPHb460) no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .navbar a:hover:nth-child(3)~.background-image {
+      background: url(https://mocah.org/mocahbig/420514-digital-painting-landscape-sky-clouds-BisBiswas.jpg) no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .navbar a:hover:nth-child(4)~.background-image {
+      background: url(https://img5.goodfon.com/wallpaper/nbig/7/eb/moon-light-bisbiswas-doroga-mashiny-luna-rakety-gory-art-obl.jpg) no-repeat;
+
+      background-size: cover;
+      background-position: center;
+    }
+
+    .navbar a:hover:nth-child(5)~.background-image {
+      background: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b3be1dae-3caa-4d45-be6c-3de586ba95e2/defjoyc-92b6f84c-8042-4ea4-94b6-26c58d2a41bc.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2IzYmUxZGFlLTNjYWEtNGQ0NS1iZTZjLTNkZTU4NmJhOTVlMlwvZGVmam95Yy05MmI2Zjg0Yy04MDQyLTRlYTQtOTRiNi0yNmM1OGQyYTQxYmMuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.qBhnqvY7gm-00NbXphI4kXyKsjjfSdHkrIJaFiPkpSI) no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+
+    @media (max-width:768px) {
+      .navbar a {
+        font-size: 3em;
+      }
+    }
+
+    @media (max-width:450px) {
+      .navbar a {
+        font-size: 2em;
+      }
+    }
+
+    section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: url(https://render.fineartamerica.com/images/rendered/default/print/8/6/break/images/artworkimages/medium/2/storm-clouds-jutta-kuss.jpg);
+      overflow: hidden;
+    }
+
+    section .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url(/img/wave.png);
+      background-size: 1000px 100px;
+    }
+
+    section .wave1 {
+      animation: animate 30s linear infinite;
+      z-index: 1000;
+      opacity: 1;
+      animation-delay: 0s;
+      bottom: 0;
+    }
+
+    section .wave2 {
+      animation: animate2 15s linear infinite;
+      z-index: 999;
+      opacity: 0.5;
+      animation-delay: -5s;
+      bottom: 10px;
+    }
+
+    section .wave3 {
+      animation: animate2 30s linear infinite;
+      z-index: 998;
+      opacity: 0.2;
+      animation-delay: -2s;
+      bottom: 15;
+    }
+
+    section .wave4 {
+      animation: animate2 5s linear infinite;
+      z-index: 997;
+      opacity: 0.7;
+      animation-delay: -5s;
+      bottom: 20;
+    }
+
+    @keyframes animate {
+      0% {
+        background-position-x: 0;
+      }
+
+      100% {
+        background-position-x: 1000px;
+      }
+    }
+
+    @keyframes animate2 {
+      0% {
+        background-position-x: 0;
+      }
+
+      100% {
+        background-position-x: -1000px;
+      }
+    }
+
+    h1 {
+      color: white;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 42px;
+      text-align: center;
+      margin-top: 200px;
+    }
+
+    span {
+      color: black;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+
+    .H1 {
+      color: rgb(250, 175, 36);
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .H2 {
+      color: rgb(82, 200, 255);
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .face {
+      text-decoration: none;
+      color: white;
+      font-size: 12px;
+      margin-left: 640px;
+      font-family: cursive;
+    }
+
+    .face:hover {
+      color: rgb(0, 0, 0);
+      border-bottom: 2px solid;
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+
+
+  <input type="checkbox" name="" id="nav-toggler" class="fas fa-bars">
+
+  <nav class="navbar">
+    <a href="#" data-text="home">home</a>
+    <a href="#" data-text="about">about</a>
+    <a href="#" data-text="services">services</a>
+    <a href="#" data-text="blogs">blogs</a>
+    <a href="#" data-text="contact">contact</a>
+    <div class="background-image"></div>
+  </nav>
+
+  <section>
+    <div class="TT">
+      <h1> &copy; T.<span class="H1">H</span><span class="H2">E</span> <span>C.K.S</span></h1>
+      <a href="https://github.com/ChickenSoup269" class="face">GitHub <i class="fab fa-github"></i></a>
+
+    </div>
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+    <div class="wave wave4"></div>
+  </section>
+
+</body>
+
+</html>
